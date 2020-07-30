@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>社区平台</title>
+    <title>发布—社区平台</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/community.css">
@@ -12,15 +12,15 @@
 </head>
 <body>
 <nav class="navbar navbar-default">
-    <div class="container-fluid main">
+    <div class="container-fluid ">
 
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                     data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">社区平台</span>
+                <span class="sr-only">叮当社区</span>
 
             </button>
-            <a class="navbar-brand" href="#">社区平台</a>
+            <a class="navbar-brand" href="#">叮当社区</a>
         </div>
 
 
@@ -52,28 +52,31 @@
     </div>
 
 </nav>
-<div class="container-fluid" main>
+<div class="container-fluid" main style="margin: 30px;background-color: white">
     <div class="row">
-        <div class="col-lg-9 col-md-12 .col-sm-12">
+        <div class="col-lg-9 col-md-12 .col-sm-12  col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>发起</h2>
             <hr>
-            <form action="3" method="post">
+            <form action="/publish" method="post">
                 <div class="form-group">
                     <label for="title">问题标题(简单扼要)</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="问题标题__">
+                    <input type="text" class="form-control"   th:text="${title}" id="title" name="title" placeholder="问题标题__">
                 </div>
                 <div class="form-group">
-                    <label for="title">问题补充(必填，请参照右侧提示)</label>
-                    <textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
+                    <label for="description">问题补充(必填，请参照右侧提示)</label>
+                    <textarea name="description" th:text="${description}" id="description" class="form-control" cols="30" rows="10"></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="title">添加标签</label>
-                    <input type="teg" class="form-control" id="teg" name="title" placeholder="输入标签，以，号分割">
+                    <label for="tag">添加标签</label>
+                    <input type="text" class="form-control"  th:text="${tag}" id="tag" name="tag" placeholder="输入标签，以，号分割">
                 </div>
+
+                <span class="alert alert-danger col-lg-3 col-md-12 .col-sm-12 col-xs-12" th:text="${error}" th:if="${error!=null}"></span>
+
                 <button type="submit" class="btn btn-success btn-publish btn-publish" >发布</button>
             </form>
         </div>
-        <div class="col-lg-3 col-md-12 .col-sm-12">
+        <div class="col-lg-3 col-md-12 .col-sm-12 col-xs-12">
             <h3> 问题发起指南</h3>
             • 问题标题: 请用精简的语言描述您发布的问题，不超过25字<br>
             • 问题补充: 详细补充您的问题内容，并确保问题描述清晰直观, 并提供一些相关的资料：<br>

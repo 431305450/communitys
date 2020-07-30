@@ -61,7 +61,7 @@ public class AuthorizeController {
             userMapper.insert(user);//把user写入数据库便相当于写入session
             //登陆成功，写入cookie和session
             response.addCookie(new Cookie("token",token));
-            request.getSession().setAttribute("guser",guser);//把user对象放到session里面
+           // request.getSession().setAttribute("guser",guser);//把user对象放到session里面
             return "redirect:index";
         }else{
             return "redirect:index"; //重新登录
