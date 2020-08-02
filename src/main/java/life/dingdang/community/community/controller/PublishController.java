@@ -71,7 +71,7 @@ public class PublishController {
         question.setTag(tag);
         question.setCreator(user.getId());
         question.setGmtCreate(System.currentTimeMillis());
-        question.setGmtModified(question.getCreate());
+        question.setGmtModified(question.getGmtCreate());
 
 
 
