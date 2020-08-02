@@ -49,6 +49,7 @@ public class PublishController {
         //判断用户是否登录，没有登录就不可发布.
         User user = null;
         Cookie[] cookies =request.getCookies();
+        if(cookies!=null&&cookies.length!=0)
         for(Cookie cookie:cookies){
             if(cookie.getName().equals("token")){
                 String token=cookie.getValue();

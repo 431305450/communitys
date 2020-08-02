@@ -58,6 +58,7 @@ public class AuthorizeController {
             user.setAccountId(String.valueOf(guser.getId()));
             user.setGmtCreate(System.currentTimeMillis());
             user.setGmtModified(user.getGmtCreate());
+            user.setAvatarUrl(guser.getAvatar_url());
             userMapper.insert(user);//把user写入数据库便相当于写入session
             //登陆成功，写入cookie和session
             response.addCookie(new Cookie("token",token));
