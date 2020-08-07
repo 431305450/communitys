@@ -1,5 +1,6 @@
 package life.dingdang.community.community.controller;
 
+import life.dingdang.community.community.dto.PaginationDTO;
 import life.dingdang.community.community.dto.QuestionDTO;
 import life.dingdang.community.community.mapper.QuestionMapper;
 import life.dingdang.community.community.mapper.UserMapper;
@@ -24,8 +25,11 @@ public class IndexController {
 
     @Autowired
     private QuestionService questionService;
-    @GetMapping("/index")
-    public String index(HttpServletRequest request,Model model
+    @GetMapping("/")
+    public String index(HttpServletRequest request,Model model,
+                        //获取页面页数参数
+                        @RequestParam(name = "page", defaultValue = "1") Integer page,
+                        @RequestParam(name = "size", defaultValue = "5") Integer size
                         ){
         Cookie[] cookies =request.getCookies();
         if(cookies!=null&&cookies.length!=0)
@@ -39,8 +43,10 @@ public class IndexController {
                 break;
             }
         }
-        List<QuestionDTO> questionList=questionService.list();
-        model.addAttribute("questions",questionList);
+        PaginationDTO pagination=questionService.list(page, size);
+
+
+        model.addAttribute("pagination", pagination);
         return "index";
     }
 }
